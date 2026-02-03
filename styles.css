@@ -1,5 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap');
 
+{
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #f7f9fc;
+  color: #222;
+  line-height: 1.6;
+}
+
 :root {
   --primary: #ff4b5c;    /* bold red/pink */
   --accent: #ffb830;     /* bright orange/yellow */
