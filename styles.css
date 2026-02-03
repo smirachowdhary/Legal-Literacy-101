@@ -1,12 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap');
 
 :root {
-  --primary: #1e3a8a;
-  --accent: #14b8a6;
-  --bg: #f8fafc;
-  --card: #ffffff;
+  --primary: #ff4b5c;    /* bold red/pink */
+  --accent: #ffb830;     /* bright orange/yellow */
+  --bg: #f0f8ff;         /* baby blue background */
+  --card: #ffffff;        /* white cards */
   --text: #0f172a;
-  --muted: #475569;
+  --muted: #4b4b4b;
 }
 
 body {
@@ -21,7 +21,7 @@ body {
 nav {
   background: var(--primary);
   color: white;
-  padding: 20px 44px;
+  padding: 20px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -30,72 +30,58 @@ nav {
 nav strong {
   font-family: 'Manrope', sans-serif;
   font-weight: 800;
-  font-size: 1.15rem;
-  letter-spacing: 0.02em;
+  font-size: 1.25rem;
 }
 
 nav a {
   color: white;
   text-decoration: none;
-  margin-left: 26px;
+  margin-left: 24px;
   font-family: 'Manrope', sans-serif;
-  font-weight: 600;
-  opacity: 0.9;
+  font-weight: 700;
+  opacity: 0.95;
 }
 
 nav a:hover {
-  opacity: 1;
+  color: var(--accent);
   text-decoration: underline;
-}
-
-/* LAYOUT */
-.container {
-  max-width: 1080px;
-  margin: auto;
-  padding: 80px 32px;
 }
 
 /* HERO */
 .hero h1 {
   font-family: 'Manrope', sans-serif;
   font-weight: 800;
-  font-size: 3.4rem;
-  margin-bottom: 18px;
+  font-size: 3.5rem;
+  margin-bottom: 15px;
   color: var(--primary);
 }
 
 .hero p {
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   color: var(--muted);
-  max-width: 720px;
-}
-
-/* HEADINGS */
-h1, h2, h3 {
-  font-family: 'Manrope', sans-serif;
-  font-weight: 700;
+  max-width: 700px;
 }
 
 /* CARDS */
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 32px;
-  margin-top: 55px;
+  gap: 30px;
+  margin-top: 50px;
 }
 
 .card {
   background: var(--card);
-  padding: 32px;
+  padding: 28px;
   border-radius: 16px;
-  border-left: 7px solid var(--accent);
-  box-shadow: 0 14px 35px rgba(0,0,0,0.08);
+  border-left: 10px solid var(--accent);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.12);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 45px rgba(0,0,0,0.12);
+  box-shadow: 0 25px 45px rgba(0,0,0,0.2);
 }
 
 .card h3 {
@@ -106,7 +92,7 @@ h1, h2, h3 {
 /* LINKS */
 a {
   color: var(--accent);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 a:hover {
@@ -116,9 +102,9 @@ a:hover {
 /* FOOTER */
 footer {
   background: var(--primary);
-  color: #e5e7eb;
-  padding: 34px;
+  color: #fff;
+  padding: 35px;
   text-align: center;
   font-size: 0.95rem;
-  margin-top: 110px;
+  margin-top: 100px;
 }
