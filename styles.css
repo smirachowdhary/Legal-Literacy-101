@@ -1,24 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap');
 
-{
+/* FIX: box-sizing rule needs a selector */
+*, *::before, *::after {
   box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: 'Segoe UI', Arial, sans-serif;
-  background-color: #f7f9fc;
-  color: #222;
-  line-height: 1.6;
 }
 
 :root {
   --primary: #ff4b5c;    /* bold red/pink */
   --accent: #ffb830;     /* bright orange/yellow */
   --bg: #f0f8ff;         /* baby blue background */
-  --card: #ffffff;        /* white cards */
+  --card: #ffffff;       /* white cards */
   --text: #0f172a;
   --muted: #4b4b4b;
+
+  /* new */
+  --border: rgba(15, 23, 42, 0.12);
+  --shadow: 0 12px 30px rgba(0,0,0,0.12);
+  --radius: 16px;
 }
 
 body {
@@ -29,76 +27,141 @@ body {
   line-height: 1.7;
 }
 
+/* CENTRALIZED PAGE LAYOUT */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 44px 20px;
+}
+
+/* OPTIONAL: general text alignment helpers */
+.center {
+  text-align: center;
+}
+
 /* NAVBAR */
 nav {
   background: var(--primary);
   color: white;
-  padding: 20px 40px;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.25);
+}
+
+/* This keeps nav content centered with padding */
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
 }
 
 nav strong {
   font-family: 'Manrope', sans-serif;
   font-weight: 800;
   font-size: 1.25rem;
+  letter-spacing: 0.2px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 nav a {
   color: white;
   text-decoration: none;
-  margin-left: 24px;
   font-family: 'Manrope', sans-serif;
   font-weight: 700;
   opacity: 0.95;
+  padding: 8px 10px;
+  border-radius: 10px;
 }
 
 nav a:hover {
   color: var(--accent);
-  text-decoration: underline;
+  background: rgba(255,255,255,0.12);
+  text-decoration: none;
 }
 
 /* HERO */
+.hero {
+  background: linear-gradient(180deg, rgba(255,75,92,0.10), rgba(255,75,92,0.00));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 44px 28px;
+  box-shadow: var(--shadow);
+}
+
 .hero h1 {
   font-family: 'Manrope', sans-serif;
   font-weight: 800;
-  font-size: 3.5rem;
-  margin-bottom: 15px;
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  margin: 0 0 12px 0;
   color: var(--primary);
+  text-align: center;          /* centered headline */
 }
 
 .hero p {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   color: var(--muted);
-  max-width: 700px;
+  max-width: 800px;
+  margin: 0 auto;              /* centers the paragraph block */
+  text-align: center;          /* centered paragraph */
 }
 
-/* CARDS */
+/* SECTION HEADERS */
+h2, h3 {
+  font-family: 'Manrope', sans-serif;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 0;
+}
+
+/* CARDS GRID */
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  margin-top: 50px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 26px;
+  margin-top: 34px;
 }
 
+/* CARD */
 .card {
   background: var(--card);
-  padding: 28px;
-  border-radius: 16px;
-  border-left: 10px solid var(--accent);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.12);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  padding: 26px;
+  border-radius: var(--radius);
+
+  /* Borders */
+  border: 1px solid var(--border);
+  border-top: 6px solid var(--accent);
+
+  box-shadow: var(--shadow);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
 }
 
 .card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 25px 45px rgba(0,0,0,0.2);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.18);
 }
 
 .card h3 {
-  margin-top: 0;
+  margin: 0 0 8px 0;
   color: var(--primary);
+  text-align: center; /* center card headings */
+}
+
+.card p {
+  margin: 0;
+  text-align: center; /* center card text */
 }
 
 /* LINKS */
@@ -115,8 +178,17 @@ a:hover {
 footer {
   background: var(--primary);
   color: #fff;
-  padding: 35px;
+  padding: 30px 20px;
   text-align: center;
   font-size: 0.95rem;
-  margin-top: 100px;
+  margin-top: 80px;
+  border-top: 1px solid rgba(255,255,255,0.25);
+}
+
+/* MOBILE NAV STACK */
+@media (max-width: 720px) {
+  .nav-inner {
+    flex-direction: column;
+    align-items: center;
+  }
 }
