@@ -5,6 +5,91 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About | Legal Literacy 101</title>
   <link rel="stylesheet" href="styles.css">
+
+  <!-- Page-only styling (so you don't have to edit styles.css) -->
+  <style>
+    /* Horizontal panels (instead of cards) */
+    .about-panels{
+      display:flex;
+      gap:22px;
+      margin-top:26px;
+      flex-wrap:wrap;
+    }
+    .about-panel{
+      flex:1 1 340px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: 0 12px 30px rgba(0,0,0,.10);
+      text-align:left; /* keeps text readable even if site is centered */
+    }
+    .about-panel h2{
+      margin:0 0 10px 0;
+      font-family:'Manrope', sans-serif;
+      color: var(--primary);
+      font-size: 1.4rem;
+      text-align:left;
+    }
+    .about-panel p{
+      margin:0;
+      color: var(--text);
+    }
+
+    /* Team section */
+    .team{
+      margin-top:34px;
+      text-align:left;
+    }
+    .team h2{
+      font-family:'Manrope', sans-serif;
+      color: var(--primary);
+      margin: 0 0 14px 0;
+      font-size: 1.6rem;
+      text-align:left;
+    }
+    .team-member{
+      display:flex;
+      gap:18px;
+      align-items:flex-start;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 12px 30px rgba(0,0,0,.08);
+      margin-bottom: 16px;
+    }
+    .team-member img{
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 14px;
+      border: 2px solid rgba(15,23,42,0.10);
+      flex: 0 0 auto;
+    }
+    .team-member h3{
+      margin: 0 0 6px 0;
+      font-family:'Manrope', sans-serif;
+      color: var(--text);
+      font-size: 1.2rem;
+    }
+    .team-member .role{
+      margin: 0 0 10px 0;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .team-member p{
+      margin: 0;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Mobile: stack photo above bio */
+    @media (max-width: 700px){
+      .team-member{ flex-direction:column; }
+      .team-member img{ width: 100%; height: 220px; }
+    }
+  </style>
 </head>
 
 <body>
@@ -26,29 +111,70 @@
   <div class="container">
     <section class="hero">
       <h1>About</h1>
-      <p>
-        Legal Literacy 101 exists to make the law clear, accessible, and usable.
-      </p>
+      <p>Legal Literacy 101 exists to make the law clear, accessible, and usable.</p>
     </section>
 
-    <div class="cards">
-      <div class="card">
-        <h3>Our mission</h3>
+    <!-- Horizontal panels -->
+    <div class="about-panels">
+      <section class="about-panel">
+        <h2>Our mission</h2>
         <p>
-          We provide plain-language, multilingual legal information so immigrants,
-          workers, and students understand their rights and feel empowered to advocate
-          for themselves because we beleive that access to legal knowledge should not depend on income, language, or background.
-          Everyone deserves to understand the rules that affect their lives.
+          We provide plain-language, multilingual legal information so immigrants, workers, and students
+          understand their rights and feel empowered to advocate for themselves. We believe that access
+          to legal knowledge should not depend on income, language, or background. Everyone deserves to
+          understand the rules that affect their lives.
         </p>
+      </section>
+
+      <section class="about-panel">
+        <h2>Want to contribute?</h2>
+        <p>
+          Visit <a href="join.html">Join the Team</a> or reach out with ideas and topic requests.
+          If you have suggestions for languages, accessibility, or toolkits we should prioritize,
+          we’d love to hear them.
+        </p>
+      </section>
+    </div>
+
+    <!-- Team -->
+    <section class="team">
+      <h2>Leadership Team</h2>
+
+      <div class="team-member">
+        <img src="images/ceo.jpg" alt="CEO photo">
+        <div>
+          <h3>CEO Name</h3>
+          <p class="role">CEO</p>
+          <p>
+            Short bio here. (2–5 sentences.) Focus on what they do, why they care about access to legal
+            information, and what they’re building with Legal Literacy 101.
+          </p>
+        </div>
       </div>
 
-      <div class="card">
-        <h3>Want to contribute?</h3>
-        <p>
-          Visit <a href="join.html">Join the Team</a> or reach out with ideas and topics.
-        </p>
+      <div class="team-member">
+        <img src="images/cmo.jpg" alt="CMO photo">
+        <div>
+          <h3>CMO Name</h3>
+          <p class="role">CMO</p>
+          <p>
+            Short bio here. Mention outreach, community engagement, content strategy, partnerships, etc.
+          </p>
+        </div>
       </div>
-    </div>
+
+      <div class="team-member">
+        <img src="images/coo.jpg" alt="COO photo">
+        <div>
+          <h3>COO Name</h3>
+          <p class="role">COO</p>
+          <p>
+            Short bio here. Mention operations, planning, publishing process, quality checks, coordination.
+          </p>
+        </div>
+      </div>
+    </section>
+
   </div>
 
   <footer>
