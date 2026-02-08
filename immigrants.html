@@ -4,25 +4,31 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Immigrants’ Rights | Legal Literacy 101</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
 
-  <!-- PAGE-ONLY STYLES (does not touch styles.css) -->
+  <!-- ONLY for immigrant.html (no changes to styles.css) -->
   <style>
-    /* Only affects immigrant.html */
-    body.imm-rights-page .horizontal-cards{
-      display: flex;
-      gap: 16px;
-      overflow-x: auto;
-      padding: 8px 2px 16px;
+    body.imm-rights-page .cards.horizontal-cards{
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: nowrap !important;
+      gap: 16px !important;
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      padding: 8px 2px 16px !important;
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
     }
-    body.imm-rights-page .horizontal-cards .card{
-      flex: 0 0 340px;
+
+    body.imm-rights-page .cards.horizontal-cards .card{
+      flex: 0 0 340px !important;
       scroll-snap-align: start;
     }
+
     @media (min-width: 900px){
-      body.imm-rights-page .horizontal-cards .card{ flex-basis: 400px; }
+      body.imm-rights-page .cards.horizontal-cards .card{
+        flex-basis: 400px !important;
+      }
     }
 
     body.imm-rights-page .lang-toggle{
@@ -31,6 +37,7 @@
       margin-top: 14px;
       align-items: center;
     }
+
     body.imm-rights-page .lang-btn{
       border: 1px solid rgba(0,0,0,0.25);
       background: transparent;
@@ -39,14 +46,16 @@
       cursor: pointer;
       font: inherit;
     }
+
     body.imm-rights-page .lang-btn.active{
       background: rgba(0,0,0,0.06);
     }
+
     body.imm-rights-page .translation-note{
       margin-top: 10px;
       font-size: 0.95rem;
       opacity: 0.85;
-      display: none; /* shown only on Spanish */
+      display: none; /* only show on Spanish */
     }
   </style>
 </head>
@@ -72,7 +81,7 @@
       <h1>Immigrants’ Rights Toolkit</h1>
       <p>Plain-language guidance on common situations.</p>
 
-      <!-- TRANSLATE TOGGLE (page-only) -->
+      <!-- Translate toggle -->
       <div class="lang-toggle" role="group" aria-label="Language toggle">
         <button class="lang-btn active" type="button" data-lang="en" aria-pressed="true">English</button>
         <button class="lang-btn" type="button" data-lang="es" aria-pressed="false">Español</button>
@@ -83,13 +92,13 @@
       </p>
     </section>
 
-    <!-- ENGLISH: first five -->
-    <section class="cards horizontal-cards" data-lang-section="en" aria-label="English cards">
+    <!-- PART 1 (ENGLISH) — first five -->
+    <section class="cards horizontal-cards" id="cardsEN" aria-label="English cards">
       <div class="card">
         <h3>The Right to Remain Silent</h3>
         <p>
-          The Fifth Amendment protects “persons” (not just citizens) from being forced to answer
-          questions that could be used against them.
+          The Fifth Amendment protects “persons” (not just citizens) from being forced to answer questions
+          that could be used against them.
         </p>
         <ul class="toolkit-list">
           <li>You can stay silent about where you were born.</li>
@@ -103,8 +112,8 @@
       <div class="card">
         <h3>Home Visits</h3>
         <p>
-          Your home has the highest level of constitutional protection. ICE generally cannot enter without
-          your consent or a judge-signed warrant.
+          Your home has the highest level of constitutional protection. ICE generally cannot enter without your consent
+          or a judge-signed warrant.
         </p>
         <ul class="toolkit-list">
           <li>Keep the door closed.</li>
@@ -158,8 +167,8 @@
       </div>
     </section>
 
-    <!-- SPANISH: next five -->
-    <section class="cards horizontal-cards" data-lang-section="es" aria-label="Spanish cards" hidden>
+    <!-- PART 2 (SPANISH) — next five -->
+    <section class="cards horizontal-cards" id="cardsES" aria-label="Spanish cards" hidden>
       <div class="card">
         <h3>El derecho de permanecer callado</h3>
         <p>
@@ -178,8 +187,8 @@
       <div class="card">
         <h3>Visitas a domicilio</h3>
         <p>
-          Tu hogar tiene el nivel más alto de protección constitucional. ICE no puede entrar legalmente sin tu
-          consentimiento o una orden firmada por un juez.
+          Tu hogar tiene el nivel más alto de protección constitucional. ICE no puede entrar legalmente sin tu consentimiento
+          o una orden firmada por un juez.
         </p>
         <ul class="toolkit-list">
           <li>Mantén la puerta cerrada.</li>
@@ -232,6 +241,7 @@
         </ul>
       </div>
     </section>
+
   </div>
 
   <footer>
@@ -239,9 +249,9 @@
   </footer>
 
   <script>
-    // Toggle EN/ES (only on this page)
     const langButtons = document.querySelectorAll(".lang-btn");
-    const sections = document.querySelectorAll("[data-lang-section]");
+    const cardsEN = document.getElementById("cardsEN");
+    const cardsES = document.getElementById("cardsES");
     const note = document.getElementById("translationNote");
 
     function setLang(lang){
@@ -251,12 +261,19 @@
         btn.setAttribute("aria-pressed", active ? "true" : "false");
       });
 
-      sections.forEach(sec => {
-        sec.hidden = sec.dataset.langSection !== lang;
-      });
-
-      note.style.display = (lang === "es") ? "block" : "none";
-      document.documentElement.lang = (lang === "es") ? "es" : "en";
+      if (lang === "es") {
+        cardsEN.hidden = true;
+        cardsES.hidden = false;
+        note.style.display = "block";
+        document.documentElement.lang = "es";
+        cardsES.scrollLeft = 0;
+      } else {
+        cardsEN.hidden = false;
+        cardsES.hidden = true;
+        note.style.display = "none";
+        document.documentElement.lang = "en";
+        cardsEN.scrollLeft = 0;
+      }
     }
 
     langButtons.forEach(btn => btn.addEventListener("click", () => setLang(btn.dataset.lang)));
