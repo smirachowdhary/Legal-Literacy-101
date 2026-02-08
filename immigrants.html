@@ -5,9 +5,53 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Immigrants’ Rights | Legal Literacy 101</title>
   <link rel="stylesheet" href="styles.css">
+
+  <!-- PAGE-ONLY STYLES (does not touch styles.css) -->
+  <style>
+    /* Only affects immigrant.html */
+    body.imm-rights-page .horizontal-cards{
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding: 8px 2px 16px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    body.imm-rights-page .horizontal-cards .card{
+      flex: 0 0 340px;
+      scroll-snap-align: start;
+    }
+    @media (min-width: 900px){
+      body.imm-rights-page .horizontal-cards .card{ flex-basis: 400px; }
+    }
+
+    body.imm-rights-page .lang-toggle{
+      display: inline-flex;
+      gap: 10px;
+      margin-top: 14px;
+      align-items: center;
+    }
+    body.imm-rights-page .lang-btn{
+      border: 1px solid rgba(0,0,0,0.25);
+      background: transparent;
+      padding: 8px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      font: inherit;
+    }
+    body.imm-rights-page .lang-btn.active{
+      background: rgba(0,0,0,0.06);
+    }
+    body.imm-rights-page .translation-note{
+      margin-top: 10px;
+      font-size: 0.95rem;
+      opacity: 0.85;
+      display: none; /* shown only on Spanish */
+    }
+  </style>
 </head>
 
-<body>
+<body class="imm-rights-page">
 
   <nav>
     <div class="nav-inner">
@@ -26,45 +70,198 @@
   <div class="container">
     <section class="hero">
       <h1>Immigrants’ Rights Toolkit</h1>
-      <p>
-        Plain-language guidance on common situations. ⚖️ General legal information only — not legal advice.
+      <p>Plain-language guidance on common situations.</p>
+
+      <!-- TRANSLATE TOGGLE (page-only) -->
+      <div class="lang-toggle" role="group" aria-label="Language toggle">
+        <button class="lang-btn active" type="button" data-lang="en" aria-pressed="true">English</button>
+        <button class="lang-btn" type="button" data-lang="es" aria-pressed="false">Español</button>
+      </div>
+
+      <p class="translation-note" id="translationNote">
+        Spanish translation reviewed by an AP Spanish Language teacher.
       </p>
     </section>
 
-    <div class="cards">
+    <!-- ENGLISH: first five -->
+    <section class="cards horizontal-cards" data-lang-section="en" aria-label="English cards">
       <div class="card">
-        <h3>Part 1: If You Are Stopped</h3>
+        <h3>The Right to Remain Silent</h3>
+        <p>
+          The Fifth Amendment protects “persons” (not just citizens) from being forced to answer
+          questions that could be used against them.
+        </p>
         <ul class="toolkit-list">
-          <li>You have the right to remain silent.</li>
-          <li>You do not have to answer questions about immigration status.</li>
-          <li>You can ask to speak to a lawyer.</li>
+          <li>You can stay silent about where you were born.</li>
+          <li>You can stay silent about how you entered the U.S.</li>
+          <li>You can stay silent about immigration status.</li>
+          <li>If needed, say: <strong>“I am exercising my right to remain silent.”</strong></li>
+          <li><strong>Do not lie</strong> — simply remain silent.</li>
         </ul>
       </div>
 
       <div class="card">
-        <h3>Part 2: At Work or School</h3>
+        <h3>Home Visits</h3>
+        <p>
+          Your home has the highest level of constitutional protection. ICE generally cannot enter without
+          your consent or a judge-signed warrant.
+        </p>
         <ul class="toolkit-list">
-          <li>Workers must be paid regardless of immigration status.</li>
-          <li>Schools cannot deny education based on status.</li>
-          <li>You are not required to disclose status.</li>
+          <li>Keep the door closed.</li>
+          <li>Ask them to slide the warrant under the door.</li>
+          <li>Refuse entry if it is not signed by a judge.</li>
+          <li>An <strong>administrative ICE warrant</strong> is not judge-signed.</li>
+          <li>You don’t have to open the door just because officers are present.</li>
         </ul>
       </div>
 
       <div class="card">
-        <h3>Part 3: Documents & Emergency Planning</h3>
+        <h3>Detention</h3>
+        <p>
+          Immigration law includes enforcement — but also relief options and protections written into federal law.
+        </p>
         <ul class="toolkit-list">
-          <li>Carry only required documents.</li>
-          <li>Keep copies in a safe location.</li>
-          <li>Have emergency contacts prepared.</li>
+          <li><strong>TPS</strong> may allow people from certain countries to remain and work temporarily.</li>
+          <li><strong>Cancellation of removal</strong> may be available for some long-term residents with qualifying hardship.</li>
+          <li><strong>Humanitarian parole</strong> may be granted for urgent humanitarian reasons or significant public benefit.</li>
+          <li><strong>SIJS</strong> may protect certain children who were abused, abandoned, or neglected.</li>
+          <li>Stay informed and seek legal guidance — you and your loved ones will be okay.</li>
         </ul>
       </div>
-    </div>
+
+      <div class="card">
+        <h3>The Presence of a Weapon</h3>
+        <p>
+          When weapons are present, situations can escalate quickly. Your priority in the moment is physical safety.
+        </p>
+        <ul class="toolkit-list">
+          <li>Stay calm and keep your hands visible.</li>
+          <li>Do not run or make sudden movements.</li>
+          <li>Speak clearly.</li>
+          <li>Show documents only if asked and you can do so safely.</li>
+          <li>Say: <strong>“I am exercising my right to remain silent.”</strong> or <strong>“I want a lawyer.”</strong></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Legal Help</h3>
+        <p>
+          Enforcement must follow legal procedures. If you’re stopped or detained, focus on protecting yourself and getting help.
+        </p>
+        <ul class="toolkit-list">
+          <li>Contact a licensed immigration attorney.</li>
+          <li>Contact nonprofit legal aid organizations.</li>
+          <li>Memorize a trusted phone number.</li>
+          <li>Carry a Know Your Rights card.</li>
+          <li>Remember: the Constitution protects persons, regardless of status.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SPANISH: next five -->
+    <section class="cards horizontal-cards" data-lang-section="es" aria-label="Spanish cards" hidden>
+      <div class="card">
+        <h3>El derecho de permanecer callado</h3>
+        <p>
+          La Quinta Enmienda protege a las “personas” (no solo a ciudadanos) contra ser obligadas a responder
+          preguntas que puedan usarse en su contra.
+        </p>
+        <ul class="toolkit-list">
+          <li>No tienes que responder dónde naciste.</li>
+          <li>No tienes que responder cómo entraste en EE. UU.</li>
+          <li>No tienes que responder sobre tu estatus migratorio.</li>
+          <li>Si es necesario, di: <strong>“Ejerzo mi derecho a guardar silencio.”</strong></li>
+          <li><strong>No mientas</strong> — simplemente guarda silencio.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Visitas a domicilio</h3>
+        <p>
+          Tu hogar tiene el nivel más alto de protección constitucional. ICE no puede entrar legalmente sin tu
+          consentimiento o una orden firmada por un juez.
+        </p>
+        <ul class="toolkit-list">
+          <li>Mantén la puerta cerrada.</li>
+          <li>Pídeles que deslicen la orden bajo la puerta.</li>
+          <li>Niega la entrada si no está firmada por un juez.</li>
+          <li>Una <strong>orden administrativa</strong> de ICE no está firmada por un juez.</li>
+          <li>No tienes que abrir la puerta solo porque haya agentes presentes.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Detenciones</h3>
+        <p>
+          La ley migratoria incluye aplicación, pero también vías, salvaguardas y protecciones definidas por ley federal.
+        </p>
+        <ul class="toolkit-list">
+          <li><strong>TPS</strong> puede permitir permanecer y trabajar legalmente temporalmente.</li>
+          <li><strong>Cancelación de expulsión</strong> puede estar disponible para algunos residentes de larga duración con dificultades calificadas.</li>
+          <li><strong>Permiso humanitario</strong> puede concederse por razones humanitarias urgentes o beneficio público significativo.</li>
+          <li><strong>SIJS</strong> puede proteger a ciertos niños que fueron maltratados, abandonados o descuidados.</li>
+          <li>Mantente informado y busca asesoramiento legal — tú y tus seres queridos estaréis bien.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Presencia de armas</h3>
+        <p>
+          Cuando hay armas, la situación puede escalar rápidamente. En ese momento, tu prioridad es la seguridad física.
+        </p>
+        <ul class="toolkit-list">
+          <li>Mantén la calma y mantén las manos visibles.</li>
+          <li>No corras ni hagas movimientos bruscos.</li>
+          <li>Habla claro.</li>
+          <li>Muestra documentos solo si es posible y de forma segura.</li>
+          <li>Di: <strong>“Estoy ejerciendo mi derecho a guardar silencio.”</strong> o <strong>“Quiero un abogado.”</strong></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Ayuda legal</h3>
+        <p>
+          La aplicación debe seguir procedimientos legales definidos. Si te detienen, enfócate en mantenerte seguro y conseguir ayuda.
+        </p>
+        <ul class="toolkit-list">
+          <li>Contacta con un abogado de inmigración con licencia.</li>
+          <li>Contacta con organizaciones sin ánimo de lucro de asistencia legal.</li>
+          <li>Memoriza un número de teléfono de confianza.</li>
+          <li>Lleva una tarjeta de “Conoce tus Derechos”.</li>
+          <li>Recuerda: la Constitución protege a las personas, independientemente del estatus.</li>
+        </ul>
+      </div>
+    </section>
   </div>
 
   <footer>
     © 2026 Legal Literacy 101
   </footer>
 
+  <script>
+    // Toggle EN/ES (only on this page)
+    const langButtons = document.querySelectorAll(".lang-btn");
+    const sections = document.querySelectorAll("[data-lang-section]");
+    const note = document.getElementById("translationNote");
+
+    function setLang(lang){
+      langButtons.forEach(btn => {
+        const active = btn.dataset.lang === lang;
+        btn.classList.toggle("active", active);
+        btn.setAttribute("aria-pressed", active ? "true" : "false");
+      });
+
+      sections.forEach(sec => {
+        sec.hidden = sec.dataset.langSection !== lang;
+      });
+
+      note.style.display = (lang === "es") ? "block" : "none";
+      document.documentElement.lang = (lang === "es") ? "es" : "en";
+    }
+
+    langButtons.forEach(btn => btn.addEventListener("click", () => setLang(btn.dataset.lang)));
+    setLang("en");
+  </script>
+
 </body>
 </html>
-
